@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saturated Life — Scripture, sung.</title>
+<meta name="description" content="The Bible you can hear: whole chapters sung as Gospel, R&B, Jazz, Classical, Hip-Hop and more. The lyric is the verse — all of it. Real songs, real scripture. iOS.">
+<link rel="canonical" href="https://thesaturatedlife.com/">
+<meta property="og:title" content="Saturated Life — Scripture, sung.">
+<meta property="og:description" content="Whole chapters of scripture sung in twelve genres. The lyric is the verse — all of it.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thesaturatedlife.com/">
+<meta property="og:image" content="https://thesaturatedlife.com/assets/art/david-musicians.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://saturatedlife-e5fec.web.app" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════════════
+   SATURATED LIFE — "The Illuminated Hour"
+   A cathedral at candle-hour: deep indigo, gold leaf, sacred art in
+   light shafts — and the site actually sings. Real songs, honest
+   visualizer, nothing simulated.
+   ══════════════════════════════════════════════════════════════════ */
+:root{
+  --indigo:#0B0D1A; --indigo-2:#111427; --indigo-3:#1A1E38;
+  --gold:#D4A94A; --gold-bright:#F0CE82; --gold-deep:#9C7526;
+  --candle:#F5E3BB;
+  --text:#EFE9DC; --text-2:#B3AC9C; --text-3:#7E7869;
+  --line:rgba(239,233,220,.13);
+  --display:'Cormorant Garamond', Georgia, serif;
+  --sans:'Inter', -apple-system, system-ui, sans-serif;
+  --ease:cubic-bezier(.22,.9,.24,1);
+  --t-fast:.35s; --t-med:.6s; --t-slow:1s;
+  --tint:transparent;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--indigo); color:var(--text);
+  font-family:var(--sans); font-size:16.5px; line-height:1.68;
+  overflow-x:hidden;
+  transition:background-color 1.4s var(--ease);
+}
+::selection{background:var(--gold);color:var(--indigo)}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,4.5vw,64px)}
+
+/* grain + vignette */
+body::after{
+  content:'';position:fixed;inset:-50%;z-index:99;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+  animation:grain 9s steps(10) infinite;
+}
+@keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,3%)}80%{transform:translate(3%,1%)}}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 100% at 50% 40%,transparent 55%,rgba(4,5,12,.55) 100%)}
+.tintlayer{position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--tint);transition:background 1.4s var(--ease)}
+main{position:relative;z-index:2}
+
+/* type */
+h1,h2{font-family:var(--display);font-weight:600;letter-spacing:.005em;line-height:1.08;text-wrap:balance}
+h1{font-size:clamp(2.6rem,6.2vw,4.8rem)}
+h2{font-size:clamp(1.9rem,3.8vw,3rem)}
+.kicker{
+  font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:12px;margin-bottom:20px;font-weight:600;
+}
+.kicker::before{content:'';width:0;height:1px;background:var(--gold);transition:width var(--t-slow) var(--ease) .15s}
+.kicker.in::before{width:30px}
+.lede{color:var(--text-2);font-size:clamp(1.02rem,1.35vw,1.18rem);max-width:56ch}
+.rv{opacity:0;transform:translateY(26px);transition:opacity var(--t-slow) var(--ease),transform var(--t-slow) var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.1s}.rv[data-d="2"]{transition-delay:.22s}.rv[data-d="3"]{transition-delay:.34s}
+
+/* nav */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px clamp(20px,4.5vw,64px);
+  background:linear-gradient(rgba(11,13,26,.85),rgba(11,13,26,0));
+  transition:transform var(--t-med) var(--ease);
+}
+nav.hid{transform:translateY(-110%)}
+.brand{font-family:var(--display);font-weight:700;font-size:1.3rem;text-decoration:none;letter-spacing:.01em}
+.brand em{font-style:italic;color:var(--gold)}
+.nav-cta{
+  font-size:.85rem;font-weight:600;text-decoration:none;
+  border:1px solid var(--line);border-radius:999px;padding:9px 18px;
+  transition:all var(--t-fast) var(--ease);
+}
+.nav-cta:hover{background:var(--gold);border-color:var(--gold);color:var(--indigo)}
+
+/* ── HERO: the playable illumination ────────────────────────────── */
+.hero{min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;position:relative;overflow:hidden}
+.hero-grid{display:grid;gap:clamp(30px,5vw,70px);align-items:center;width:100%}
+@media(min-width:960px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+.hero h1{margin-bottom:22px}
+.hero h1 em{font-style:italic;color:var(--gold-bright)}
+.hero .lede{margin-bottom:34px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:.95rem;
+  padding:14px 26px;border-radius:999px;transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease);
+}
+.btn-gold{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--indigo)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(212,169,74,.35)}
+.btn-ghost{border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-bright)}
+.hero .whisper{margin-top:34px;color:var(--text-3);font-size:.85rem}
+
+/* the vitrine */
+.vitrine{position:relative;border-radius:6px}
+.vitrine .shaft{
+  position:absolute;inset:-12% -18%;pointer-events:none;
+  background:radial-gradient(65% 55% at 50% 8%,rgba(245,227,187,.16),transparent 65%);
+}
+.vitrine .art{
+  position:relative;border-radius:6px;overflow:hidden;
+  box-shadow:0 40px 110px rgba(0,0,0,.65), 0 0 0 1px rgba(212,169,74,.22), 0 0 90px rgba(212,169,74,.10);
+}
+.vitrine .art img{width:100%}
+.vitrine .art::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 42%,rgba(245,227,187,.10) 50%,transparent 58%),
+             radial-gradient(90% 60% at 50% 110%,rgba(11,13,26,.5),transparent 60%);
+}
+.vitrine .plaque{
+  margin-top:16px;text-align:center;color:var(--text-3);
+  font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+}
+/* the play control over the art */
+.vitrine .playwrap{position:absolute;left:50%;bottom:9%;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:14px}
+.playbtn{
+  width:66px;height:66px;border-radius:50%;
+  background:rgba(11,13,26,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;
+  transition:transform var(--t-fast) var(--ease),background var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease);
+  box-shadow:0 0 34px rgba(212,169,74,.3);
+}
+.playbtn:hover{transform:scale(1.07);background:rgba(212,169,74,.2)}
+.playbtn svg{width:22px;height:22px;fill:var(--gold-bright)}
+.playbtn .ic-pause{display:none}
+.playbtn.playing .ic-play{display:none}
+.playbtn.playing .ic-pause{display:block}
+.now-chip{
+  background:rgba(11,13,26,.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:.8rem;color:var(--text-2);
+  display:flex;align-items:center;gap:10px;white-space:nowrap;
+}
+.now-chip b{color:var(--candle);font-weight:600}
+
+/* the honest visualizer */
+.viz{display:flex;align-items:flex-end;gap:2.5px;height:16px}
+.viz i{width:3px;background:var(--gold);border-radius:2px;height:3px;transition:height .09s linear}
+
+/* ── THE LISTENING ROOM ─────────────────────────────────────────── */
+.room .lede{margin-top:14px;margin-bottom:44px}
+.genres{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.gtile{
+  border:1px solid var(--line);border-radius:16px;padding:18px 16px;text-align:left;position:relative;overflow:hidden;
+  transition:transform var(--t-fast) var(--ease),border-color var(--t-fast) var(--ease),background var(--t-fast) var(--ease);
+}
+.gtile:hover{transform:translateY(-4px);border-color:var(--gold);background:var(--indigo-2)}
+.gtile[aria-pressed="true"]{background:var(--indigo-3);border-color:var(--gold)}
+.gtile .g-name{font-family:var(--display);font-weight:600;font-size:1.2rem;display:block}
+.gtile .g-ref{color:var(--text-3);font-size:.76rem;display:block;margin-top:3px}
+.gtile .g-dur{position:absolute;top:14px;right:14px;color:var(--text-3);font-size:.72rem}
+.gtile .g-state{
+  margin-top:12px;display:flex;align-items:center;gap:8px;color:var(--gold);font-size:.75rem;font-weight:600;
+  opacity:0;transition:opacity var(--t-fast) var(--ease);
+}
+.gtile:hover .g-state,.gtile[aria-pressed="true"] .g-state{opacity:1}
+.room-note{color:var(--text-3);font-size:.82rem;margin-top:22px}
+
+/* ── LYRIC MOMENT ───────────────────────────────────────────────── */
+.lyric-sec{text-align:center}
+.lyric-sec .verse{
+  font-family:var(--display);font-style:italic;font-weight:500;
+  font-size:clamp(1.5rem,3.4vw,2.6rem);line-height:1.35;color:var(--candle);
+  max-width:26ch;margin:34px auto 18px;text-wrap:balance;
+}
+.lyric-sec .verse::before{content:'“';color:var(--gold)}
+.lyric-sec .verse::after{content:'”';color:var(--gold)}
+.lyric-sec .attr{color:var(--text-3);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase}
+.lyric-sec .expl{margin:26px auto 0}
+
+/* ── APP WALKTHROUGH ────────────────────────────────────────────── */
+.walk{display:grid;gap:clamp(28px,4vw,64px)}
+@media(min-width:980px){.walk{grid-template-columns:1fr 1fr;align-items:start}}
+.walk-plate-col{display:none}
+@media(min-width:980px){
+  .walk-plate-col{display:block}
+  .walk-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+}
+.walk-stage{position:relative;width:min(360px,100%)}
+.walk-slide{position:absolute;inset:0;opacity:0;transform:scale(.97);transition:opacity var(--t-med) var(--ease),transform var(--t-med) var(--ease)}
+.walk-slide.on{opacity:1;transform:none;position:relative}
+.plate{border-radius:30px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(212,169,74,.08);position:relative}
+.plate::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 40%,rgba(245,227,187,.07) 50%,transparent 60%)}
+.walk-step{min-height:56vh;display:flex;flex-direction:column;justify-content:center;padding:20px 0;opacity:.4;transition:opacity var(--t-med) var(--ease)}
+.walk-step.on{opacity:1}
+.walk-step .n{font-family:var(--display);font-style:italic;font-size:1.05rem;color:var(--gold);margin-bottom:10px}
+.walk-step h3{font-family:var(--display);font-weight:600;font-size:clamp(1.45rem,2.3vw,1.95rem);margin-bottom:12px}
+.walk-step p{color:var(--text-2);max-width:46ch}
+.walk-step .m-plate{margin-top:22px;max-width:300px}
+@media(min-width:980px){.walk-step .m-plate{display:none}}
+
+/* ── ART GALLERY ────────────────────────────────────────────────── */
+.gallery-grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:44px}
+.gpiece{position:relative}
+.gpiece .frame{border-radius:4px;overflow:hidden;border:1px solid rgba(212,169,74,.25);box-shadow:0 22px 60px rgba(0,0,0,.5);position:relative}
+.gpiece .frame::after{content:'';position:absolute;inset:0;background:radial-gradient(80% 55% at 50% 0%,rgba(245,227,187,.09),transparent 60%);pointer-events:none}
+.gpiece img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform var(--t-slow) var(--ease)}
+.gpiece:hover img{transform:scale(1.04)}
+.gpiece figcaption{margin-top:12px;font-size:.78rem;color:var(--text-3);line-height:1.5}
+.gpiece figcaption b{display:block;color:var(--text-2);font-weight:600;font-size:.84rem}
+.gpiece .pair{color:var(--gold);font-size:.74rem;margin-top:4px;display:block}
+
+/* ── honest pricing ─────────────────────────────────────────────── */
+.honest{max-width:760px}
+.honest p{color:var(--text-2);margin-top:18px;font-size:1.05rem}
+.honest p strong{color:var(--text)}
+.honest .pull{
+  font-family:var(--display);font-style:italic;font-size:clamp(1.35rem,2.3vw,1.8rem);
+  color:var(--candle);border-left:2px solid var(--gold);padding-left:22px;margin-top:30px;line-height:1.42;
+}
+
+/* ── final ──────────────────────────────────────────────────────── */
+.final{min-height:72svh;display:flex;align-items:center;text-align:center;position:relative;overflow:hidden}
+.final .glow{position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 115%,rgba(212,169,74,.35),rgba(156,117,38,.18) 40%,transparent 70%)}
+.final .wrap{position:relative;z-index:2;width:100%}
+.final h2{max-width:20ch;margin:0 auto 18px}
+.final .lede{margin:0 auto 34px}
+.store-badge{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px 22px;text-decoration:none;transition:all var(--t-fast) var(--ease)}
+.store-badge:hover{background:var(--indigo-2);border-color:var(--gold)}
+.store-badge svg{width:26px;height:26px}
+.store-badge .sb-t{text-align:left;line-height:1.15}
+.store-badge .sb-t small{display:block;font-size:.68rem;color:var(--text-3)}
+.store-badge .sb-t b{font-size:1rem}
+
+section{padding:clamp(72px,10vw,130px) 0;position:relative}
+.sec-line{border-top:1px solid var(--line)}
+footer{border-top:1px solid var(--line);padding:40px 0 60px;position:relative;z-index:2}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--text-3);font-size:.82rem}
+footer a{color:var(--text-2);text-decoration:none}
+footer a:hover{color:var(--gold)}
+footer .cols{display:flex;gap:26px;flex-wrap:wrap}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+  body::after{display:none}
+  .viz i{height:6px!important}
+}
+</style>
+</head>
+<body>
+<div class="tintlayer" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<nav id="nav" aria-label="Main">
+  <a class="brand" href="#top">Saturated <em>Life</em></a>
+  <a class="nav-cta" href="https://apps.apple.com/us/app/id6499521385">Get the app</a>
+</nav>
+
+<main id="top">
+
+<!-- ════════ HERO ════════ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker rv">The illuminated hour</div>
+      <h1 class="rv" data-d="1">Scripture, <em>sung.</em></h1>
+      <p class="lede rv" data-d="2">
+        Whole chapters of the Bible — not summaries, not paraphrase — sung as Gospel,
+        R&amp;B, Jazz, Classical, and eight more. The lyric is the verse. All of it.
+        Press play: that's Psalm 23, and it's real.
+      </p>
+      <div class="cta-row rv" data-d="3">
+        <a class="btn btn-gold" href="https://apps.apple.com/us/app/id6499521385">Get the app</a>
+        <a class="btn btn-ghost" href="#room">Enter the listening room</a>
+      </div>
+      <p class="whisper rv" data-d="3">iOS · Free to start · King James text, sung word for word</p>
+    </div>
+    <div class="rv" data-d="2">
+      <div class="vitrine">
+        <div class="shaft" aria-hidden="true"></div>
+        <div class="art">
+          <img src="assets/art/david-musicians.webp" alt="King David enthroned with musicians — Byzantine illuminated manuscript, 12th century" width="1200" height="928" fetchpriority="high">
+          <div class="playwrap">
+            <button class="playbtn" id="heroPlay" aria-label="Play Psalm 23, Gospel">
+              <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+              <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+            </button>
+            <div class="now-chip" id="nowChip">
+              <div class="viz" id="viz" aria-hidden="true"></div>
+              <span id="nowText"><b>Psalm 23</b> · Gospel</span>
+            </div>
+          </div>
+        </div>
+        <div class="plaque">King David with his musicians · Byzantine, 12th c. · Psalm 150</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ════════ THE LISTENING ROOM ════════ -->
+<section class="sec-line room" id="room">
+  <div class="wrap">
+    <div class="kicker rv">The listening room</div>
+    <h2 class="rv" data-d="1">One book. Twelve ways to hear it.</h2>
+    <p class="lede rv" data-d="2">
+      Every tile is a real song from the app — same scripture, different room.
+      Choose a genre and the whole page listens with you.
+    </p>
+    <div class="genres rv" data-d="2" id="genres" role="group" aria-label="Choose a genre to play"></div>
+    <p class="room-note rv" data-d="3">Real audio from the shipping app · nothing simulated · tap any tile to switch</p>
+  </div>
+</section>
+
+<!-- ════════ LYRIC MOMENT ════════ -->
+<section class="sec-line lyric-sec">
+  <div class="wrap">
+    <div class="kicker rv" style="justify-content:center">The lyric is the verse</div>
+    <h2 class="rv" data-d="1">Nothing added. Nothing cut.</h2>
+    <p class="verse rv" data-d="2" id="lyricVerse">The Lord is my shepherd; I shall not want. He maketh me to lie down in green pastures: he leadeth me beside the still waters.</p>
+    <p class="attr rv" data-d="2" id="lyricAttr">Psalm 23 · King James Version · sung word for word</p>
+    <p class="lede expl rv" data-d="3">
+      Paraphrase is how songs about scripture usually work. This is the other thing:
+      the chapter itself, line by line, set to melody — because melody is how a text
+      gets from your shelf to your heart.
+    </p>
+  </div>
+</section>
+
+<!-- ════════ APP WALKTHROUGH ════════ -->
+<section class="sec-line" id="app">
+  <div class="wrap">
+    <div class="kicker rv">The app, shown working</div>
+    <h2 class="rv" data-d="1">Every screen, exactly as it ships.</h2>
+    <p class="lede rv" data-d="2" style="margin-top:14px;margin-bottom:20px">
+      No mockups. This is the product you download.
+    </p>
+    <div class="walk">
+      <div>
+        <div class="walk-step" data-i="0">
+          <div class="n">i. — Home</div>
+          <h3>Your daily bread, queued.</h3>
+          <p>The day opens with a chapter chosen for you — art, audio, and text
+             together. One tap and the morning has scripture in it before the
+             phone has anything else.</p>
+          <div class="m-plate plate"><img src="assets/shots/iphone-01-home.webp" alt="Saturated Life home screen with daily chapter" loading="lazy" width="1400" height="3030"></div>
+        </div>
+        <div class="walk-step" data-i="1">
+          <div class="n">ii. — Reading</div>
+          <h3>Read while it sings.</h3>
+          <p>The verse highlights as it's sung, karaoke-honest. Eyes and ears on
+             the same line — the oldest memory trick there is, working for you.</p>
+          <div class="m-plate plate"><img src="assets/shots/iphone-02-reading.webp" alt="Reading view with synced lyrics highlighting" loading="lazy" width="1400" height="3030"></div>
+        </div>
+        <div class="walk-step" data-i="2">
+          <div class="n">iii. — Voices</div>
+          <h3>Choose who carries it.</h3>
+          <p>Different voices, different genres, the same Word. Psalm 91 hits
+             different over a beat; Genesis breathes in classical. You choose the
+             room it lives in.</p>
+          <div class="m-plate plate"><img src="assets/shots/iphone-03-voices.webp" alt="Voice and genre selection screen" loading="lazy" width="1400" height="3030"></div>
+        </div>
+        <div class="walk-step" data-i="3">
+          <div class="n">iv. — Studio</div>
+          <h3>Make the chapter yours.</h3>
+          <p>Pick the passage, pick the genre, and the studio sets it to music —
+             your chapter, your key, on your heart by Friday.</p>
+          <div class="m-plate plate"><img src="assets/shots/iphone-04-studio.webp" alt="Studio screen for creating a scripture song" loading="lazy" width="1400" height="3030"></div>
+        </div>
+      </div>
+      <div class="walk-plate-col">
+        <div class="walk-sticky">
+          <div class="walk-stage" id="walkStage">
+            <div class="walk-slide on"><div class="plate"><img src="assets/shots/iphone-01-home.webp" alt="" width="1400" height="3030"></div></div>
+            <div class="walk-slide"><div class="plate"><img src="assets/shots/iphone-02-reading.webp" alt="" loading="lazy" width="1400" height="3030"></div></div>
+            <div class="walk-slide"><div class="plate"><img src="assets/shots/iphone-03-voices.webp" alt="" loading="lazy" width="1400" height="3030"></div></div>
+            <div class="walk-slide"><div class="plate"><img src="assets/shots/iphone-04-studio.webp" alt="" loading="lazy" width="1400" height="3030"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ART GALLERY ════════ -->
+<section class="sec-line">
+  <div class="wrap">
+    <div class="kicker rv">The art and the song, same verse</div>
+    <h2 class="rv" data-d="1">A thousand years of illumination, in your pocket.</h2>
+    <p class="lede rv" data-d="2" style="margin-top:14px">
+      The app pairs every passage with classical sacred art — the same tradition
+      that kept scripture visible before most people could read. These hang in the
+      app's own library.
+    </p>
+    <div class="gallery-grid rv" data-d="2">
+      <figure class="gpiece">
+        <div class="frame"><img src="assets/art/ark-jerusalem.webp" alt="David brings the Ark of the Covenant to Jerusalem — Byzantine, Cretan school, 16th century" loading="lazy"></div>
+        <figcaption><b>David Brings the Ark to Jerusalem</b> Byzantine, Cretan school, 16th c. · 2 Samuel 6
+          <span class="pair">♪ pairs with the Psalms — David danced to these</span></figcaption>
+      </figure>
+      <figure class="gpiece">
+        <div class="frame"><img src="assets/art/guardian-angel.webp" alt="The Guardian Angel and Saint Andrew — Russian Orthodox icon" loading="lazy"></div>
+        <figcaption><b>The Guardian Angel</b> Russian Orthodox, 18th–19th c. · Psalm 91:11
+          <span class="pair">♪ in the app beside Psalm 91 — Hip-Hop &amp; Gospel</span></figcaption>
+      </figure>
+      <figure class="gpiece">
+        <div class="frame"><img src="assets/art/trumpet-rise.webp" alt="The angel sounds the trumpet and the dead rise — Byzantine fresco" loading="lazy"></div>
+        <figcaption><b>The Angel Sounds the Trumpet</b> Byzantine fresco · 1 Corinthians 15:52
+          <span class="pair">♪ pairs with 1 Corinthians — sung as R&amp;B</span></figcaption>
+      </figure>
+      <figure class="gpiece">
+        <div class="frame"><img src="assets/art/red-sea.webp" alt="The Crossing of the Red Sea — Byzantine illuminated manuscript" loading="lazy"></div>
+        <figcaption><b>The Crossing of the Red Sea</b> Byzantine, 11th c. · Exodus 14
+          <span class="pair">♪ the verse before scripture's oldest song</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ HONEST PRICING ════════ -->
+<section class="sec-line">
+  <div class="wrap">
+    <div class="honest">
+      <div class="kicker rv">The honest version</div>
+      <h2 class="rv" data-d="1">Free to use. Two things cost money.</h2>
+      <p class="rv" data-d="2">Listening, reading, and the daily chapter are free — that's the point
+         of the whole thing, and it stays free. <strong>What costs money:</strong> unlimited studio
+         creations (making new songs from any passage you choose) and the full voice library.
+         That's it. No ads next to scripture, ever.</p>
+      <p class="pull rv" data-d="2">If it's the Word, you shouldn't have to pay to hear it.
+         If it's studio time, that's fair to charge for.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FINAL ════════ -->
+<section class="final" id="start">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="kicker rv" style="justify-content:center">Deuteronomy 11:18</div>
+    <h2 class="rv" data-d="1">Lay these words upon your heart.</h2>
+    <p class="lede rv" data-d="2">Start with one chapter. By Friday you'll catch yourself singing it at the sink.</p>
+    <div class="cta-row rv" data-d="3" style="justify-content:center">
+      <a class="store-badge" href="https://apps.apple.com/us/app/id6499521385" aria-label="Download Saturated Life on the App Store">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span class="sb-t"><small>Download on the</small><b>App Store</b></span>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Saturated Life · IGUARD, LLC</span>
+    <div class="cols">
+      <a href="https://apps.apple.com/us/app/id6499521385">App Store</a>
+      <a href="mailto:hello@thesaturatedlife.com">Contact</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+    <span>KJV text · Sacred art from the app's own library</span>
+  </div>
+</footer>
+
+<script>
+/* ══════════ the real catalog — twelve genres, twelve real songs ══════════ */
+const TRACKS=[{"id":"psalms-23-gospel","genre":"Gospel","ref":"Psalms 23","dur":"4:10","lyric":"The LORD is my shepherd / I shall not want","url":"https://saturatedlife-e5fec.web.app/audio/psalms-23-gospel.mp3"},{"id":"1-corinthians-13-rb","genre":"R&B","ref":"1 Corinthians 13","dur":"3:58","lyric":"Though I speak with the tongues of men and of angels, and have not charity, I am become as sounding brass, or a tinkling cymbal / And though I have the gift of ","url":"https://saturatedlife-e5fec.web.app/audio/1-corinthians-13-rb.mp3"},{"id":"psalms-1-jazz","genre":"Jazz","ref":"Psalms 1","dur":"1:36","lyric":"Blessed is the man that walketh not in the counsel of the ungodly, nor standeth in the way of sinners, nor sitteth in the seat of the scornful / But his delight","url":"https://saturatedlife-e5fec.web.app/audio/psalms-1-jazz.mp3"},{"id":"psalms-8-classical","genre":"Classical","ref":"Psalms 8","dur":"4:20","lyric":"O LORD our Lord, how excellent is thy name in all the earth! who hast set thy glory above the heavens / Out of the mouth of babes and sucklings hast thou ordain","url":"https://saturatedlife-e5fec.web.app/audio/psalms-8-classical.mp3"},{"id":"psalms-91-hiphop","genre":"Hip-Hop","ref":"Psalms 91","dur":"2:41","lyric":"He that dwelleth in the secret place of the most High shall abide under the shadow of the Almighty / I will say of the LORD, He is my refuge and my fortress","url":"https://saturatedlife-e5fec.web.app/audio/psalms-91-hiphop.mp3"},{"id":"psalms-46-folk","genre":"Folk","ref":"Psalms 46","dur":"3:06","lyric":"God is our refuge and strength, a very present help in trouble / Therefore will not we fear, though the earth be removed, and though the mountains be carried in","url":"https://saturatedlife-e5fec.web.app/audio/psalms-46-folk.mp3"},{"id":"psalms-68-reggae","genre":"Reggae","ref":"Psalms 68","dur":"3:01","lyric":"Let God arise, let his enemies be scattered / let them also that hate him flee before him","url":"https://saturatedlife-e5fec.web.app/audio/psalms-68-reggae.mp3"},{"id":"psalms-47-afrobeat","genre":"Afrobeat","ref":"Psalms 47","dur":"1:48","lyric":"O clap your hands, all ye people / shout unto God with the voice of triumph","url":"https://saturatedlife-e5fec.web.app/audio/psalms-47-afrobeat.mp3"},{"id":"psalms-45-bossanova","genre":"Bossa Nova","ref":"Psalms 45","dur":"3:30","lyric":"My heart is inditing a good matter / I speak of the things which I have made touching the king","url":"https://saturatedlife-e5fec.web.app/audio/psalms-45-bossanova.mp3"},{"id":"psalms-139-kids","genre":"Kids","ref":"Psalms 139","dur":"1:01","lyric":"O LORD, thou hast searched me, and known me / Thou knowest my downsitting and mine uprising, thou understandest my thought afar off","url":"https://saturatedlife-e5fec.web.app/audio/psalms-139-kids.mp3"},{"id":"psalms-149-house","genre":"House","ref":"Psalms 149","dur":"2:25","lyric":"Praise ye the LORD / Sing unto the LORD a new song, and his praise in the congregation of saints","url":"https://saturatedlife-e5fec.web.app/audio/psalms-149-house.mp3"},{"id":"psalms-131-lofi","genre":"Lo-fi","ref":"Psalms 131","dur":"1:15","lyric":"LORD, my heart is not haughty, nor mine eyes lofty / neither do I exercise myself in great matters, or in things too high for me","url":"https://saturatedlife-e5fec.web.app/audio/psalms-131-lofi.mp3"}];
+const GENRE_TINTS = {
+  'Gospel':'rgba(212,169,74,.06)','R&B':'rgba(168,84,140,.06)','Jazz':'rgba(84,110,168,.06)',
+  'Classical':'rgba(150,150,170,.05)','Hip-Hop':'rgba(190,80,60,.06)','Folk':'rgba(110,150,90,.06)',
+  'Reggae':'rgba(90,160,90,.06)','Afrobeat':'rgba(200,120,40,.06)','Bossa Nova':'rgba(90,160,150,.06)',
+  'Kids':'rgba(210,170,90,.06)','House':'rgba(120,90,200,.06)','Lo-fi':'rgba(120,120,140,.06)'
+};
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* reveals */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -10% 0px'});
+document.querySelectorAll('.rv,.kicker').forEach(el=>io.observe(el));
+
+/* nav hide */
+const nav=document.getElementById('nav');let lastY=0;
+addEventListener('scroll',()=>{const y=scrollY;nav.classList.toggle('hid',y>160&&y>lastY);lastY=y;},{passive:true});
+
+/* ══════════ THE HONEST PLAYER ══════════
+   One shared <audio>; an AnalyserNode drives the visualizer from the REAL
+   signal. Nothing plays without a user gesture; nothing is simulated. */
+const player = new Audio();
+player.crossOrigin = 'anonymous';
+player.preload = 'none';
+let currentId = null, ctx = null, analyser = null, rafId = 0;
+
+const heroBtn=document.getElementById('heroPlay');
+const nowText=document.getElementById('nowText');
+const viz=document.getElementById('viz');
+for(let i=0;i<12;i++){const b=document.createElement('i');viz.appendChild(b);}
+const bars=[...viz.children];
+
+function wireAnalyser(){
+  if(ctx||RM) return;
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC) return;
+    ctx=new AC();
+    const src=ctx.createMediaElementSource(player);
+    analyser=ctx.createAnalyser();
+    analyser.fftSize=64; analyser.smoothingTimeConstant=.78;
+    src.connect(analyser); analyser.connect(ctx.destination);
+  }catch(e){ /* visualizer optional; audio still plays */ }
+}
+function draw(){
+  if(!analyser){ return; }
+  const data=new Uint8Array(analyser.frequencyBinCount);
+  const loop=()=>{
+    analyser.getByteFrequencyData(data);
+    bars.forEach((b,i)=>{
+      const v=data[Math.floor(i*data.length/bars.length)]/255;
+      b.style.height=Math.max(2,(v*16))+'px';
+    });
+    rafId=requestAnimationFrame(loop);
+  };
+  cancelAnimationFrame(rafId); loop();
+}
+function stopDraw(){ cancelAnimationFrame(rafId); bars.forEach(b=>b.style.height='3px'); }
+
+function play(track){
+  wireAnalyser();
+  if(ctx&&ctx.state==='suspended') ctx.resume();
+  if(currentId===track.id && !player.paused){ player.pause(); return; }
+  if(currentId!==track.id){
+    player.src=track.url;
+    currentId=track.id;
+    nowText.innerHTML='<b>'+track.ref+'</b> · '+track.genre;
+  }
+  player.play().catch(()=>{});
+}
+player.addEventListener('play',()=>{
+  heroBtn.classList.add('playing');
+  heroBtn.setAttribute('aria-label','Pause');
+  document.querySelectorAll('.gtile').forEach(t=>t.setAttribute('aria-pressed', t.dataset.id===currentId ? 'true':'false'));
+  draw();
+});
+player.addEventListener('pause',()=>{
+  heroBtn.classList.remove('playing');
+  heroBtn.setAttribute('aria-label','Play');
+  stopDraw();
+});
+player.addEventListener('ended',()=>{ heroBtn.classList.remove('playing'); stopDraw(); });
+
+/* hero button: Psalm 23 Gospel */
+const heroTrack=TRACKS.find(t=>t.id==='psalms-23-gospel')||TRACKS[0];
+heroBtn.addEventListener('click',()=>play(heroTrack));
+
+/* genre tiles */
+const wrap=document.getElementById('genres');
+TRACKS.forEach(t=>{
+  const b=document.createElement('button');
+  b.className='gtile'; b.dataset.id=t.id; b.setAttribute('aria-pressed','false');
+  b.setAttribute('aria-label','Play '+t.ref+' as '+t.genre+', '+t.dur);
+  b.innerHTML='<span class="g-dur">'+t.dur+'</span>'+
+    '<span class="g-name">'+t.genre+'</span>'+
+    '<span class="g-ref">'+t.ref+'</span>'+
+    '<span class="g-state">▶ <span>Play</span></span>';
+  b.addEventListener('click',()=>{
+    play(t);
+    document.documentElement.style.setProperty('--tint', GENRE_TINTS[t.genre]||'transparent');
+    const l=document.getElementById('lyricVerse'), a=document.getElementById('lyricAttr');
+    if(t.lyric){ l.textContent=t.lyric; a.textContent=t.ref+' · King James Version · sung word for word'; }
+  });
+  wrap.appendChild(b);
+});
+
+/* walkthrough sync */
+(function(){
+  const steps=[...document.querySelectorAll('.walk-step')];
+  const slides=[...document.querySelectorAll('.walk-slide')];
+  const tick=()=>{
+    const mid=innerHeight/2; let idx=0;
+    steps.forEach((el,i)=>{ if(el.getBoundingClientRect().top<=mid) idx=i; });
+    steps.forEach((el,i)=>el.classList.toggle('on',i===idx));
+    slides.forEach((el,i)=>el.classList.toggle('on',i===idx));
+  };
+  tick(); addEventListener('scroll',tick,{passive:true}); addEventListener('resize',tick);
+})();
+
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MobileApplication","name":"Saturated Life: Bible Music",
+"operatingSystem":"iOS","applicationCategory":"MusicApplication",
+"url":"https://thesaturatedlife.com","installUrl":"https://apps.apple.com/us/app/id6499521385",
+"description":"The Bible you can hear: whole chapters sung word-for-word in twelve genres — Gospel, R&B, Jazz, Classical, Hip-Hop and more — paired with classical sacred art.",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</body>
+</html>
