@@ -1,0 +1,20 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "5962W36VG2.com.anthony.visionos",
+        "paths": ["/song", "/song/*", "/playlist", "/playlist/*"],
+        "components": [
+          { "/": "/song/*" },
+          { "/": "/song" },
+          { "/": "/playlist/*" },
+          { "/": "/playlist" }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["5962W36VG2.com.anthony.visionos"]
+  }
+}
