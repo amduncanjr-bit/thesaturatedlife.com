@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A playlist from Saturated Life</title>
+<meta name="description" content="Scripture, sung. A playlist shared from the Saturated Life app.">
+<meta property="og:title" content="A playlist from Saturated Life">
+<meta property="og:description" content="Scripture, sung word for word. A playlist to listen through.">
+<meta property="og:image" content="https://thesaturatedlife.com/apple-touch-icon.png">
+<meta property="og:type" content="music.playlist">
+<meta name="apple-itunes-app" content="app-id=6499521385">
+<link rel="icon" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  :root { --ink:#0a0a0a; --cream:#fff3d1; --pink:#f27cc8; --lime:#dcf25a; --violet:#5b4bff; --amber:#ffc53d; --char:#161616; --dim:#c4beb2; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { background:#000; color:var(--cream); font-family: ui-rounded, "SF Pro Rounded", -apple-system, "Segoe UI", system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  body { min-height:100vh; display:flex; flex-direction:column; align-items:center; padding: 24px 16px 40px; }
+  .brand { display:flex; align-items:center; gap:10px; color:var(--pink); font-weight:900; font-size:22px; letter-spacing:-0.04em; margin: 8px 0 22px; align-self:flex-start; text-decoration:none; }
+  .bloom { width:26px; height:26px; }
+  .card { width:100%; max-width:520px; background:var(--cream); color:var(--ink); border-radius:28px; padding:24px 22px 22px; }
+  .eyebrow { font-size:11px; font-weight:900; letter-spacing:0.16em; text-transform:uppercase; opacity:0.6; }
+  h1 { font-size: clamp(34px, 9vw, 46px); font-weight:900; letter-spacing:-0.045em; line-height:1.02; margin:10px 0 12px; }
+  .pill { display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:999px; font-weight:900; font-size:12px; letter-spacing:0.02em; background:var(--ink); color:var(--cream); }
+  .pill.pink { background:var(--pink); color:var(--ink); }
+  .row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+  .player { display:flex; align-items:center; gap:14px; margin:6px 0 20px; }
+  .play { width:64px; height:64px; border-radius:50%; border:0; background:var(--ink); color:var(--lime); display:grid; place-items:center; cursor:pointer; flex:none; }
+  .play svg { width:26px; height:26px; }
+  .rail { flex:1; height:8px; border-radius:999px; background:rgba(10,10,10,0.12); position:relative; overflow:hidden; }
+  .rail > i { position:absolute; inset:0 auto 0 0; width:0; background:var(--ink); border-radius:999px; }
+  .time { font-variant-numeric: tabular-nums; font-weight:800; font-size:12px; opacity:0.65; min-width:44px; text-align:right; }
+  .cta { display:flex; gap:6px; margin-top:10px; }
+  .cta a.main { flex:1; display:flex; align-items:center; justify-content:center; height:56px; border-radius:999px; background:var(--ink); color:var(--cream); font-weight:900; font-size:17px; text-decoration:none; }
+  .cta a.arrow { width:56px; height:56px; border-radius:50%; background:var(--violet); display:grid; place-items:center; text-decoration:none; color:#fff; font-weight:900; font-size:22px; }
+  .store { margin-top:14px; display:flex; justify-content:center; }
+  .store a { display:inline-flex; align-items:center; gap:8px; height:44px; padding:0 18px; border-radius:999px; background:var(--pink); color:var(--ink); font-weight:900; font-size:14px; text-decoration:none; }
+  .note { margin-top:14px; font-size:13px; font-weight:600; opacity:0.65; text-align:center; }
+  .marquee { width:100%; overflow:hidden; margin:34px 0 0; white-space:nowrap; }
+  .marquee span { display:inline-block; padding-left:100%; animation: slide 22s linear infinite; font-weight:900; font-size:40px; letter-spacing:-0.04em; color:#2b2b2b; }
+  @keyframes slide { to { transform: translateX(-100%); } }
+  @media (prefers-reduced-motion: reduce) { .marquee span { animation:none; padding-left:0; } }
+  .missing { color:var(--cream); text-align:center; max-width:460px; }
+  .missing h1 { color:var(--cream); }
+
+  .by { font-weight:800; font-size:14px; opacity:0.7; margin:-4px 0 14px; }
+  .desc { font-weight:600; font-size:15px; margin-bottom:14px; }
+  ol.tracks { list-style:none; display:flex; flex-direction:column; gap:8px; margin:6px 0 18px; }
+  ol.tracks button { width:100%; display:flex; align-items:center; gap:12px; padding:10px 12px; border:0; border-radius:18px; background:rgba(10,10,10,0.07); color:var(--ink); font:inherit; text-align:left; cursor:pointer; }
+  ol.tracks button[aria-current="true"] { background:var(--ink); color:var(--cream); }
+  .n { width:22px; font-weight:900; font-variant-numeric:tabular-nums; opacity:0.55; }
+  .t { flex:1; font-weight:900; font-size:16px; letter-spacing:-0.02em; }
+  .g { font-size:12px; font-weight:800; padding:4px 10px; border-radius:999px; background:var(--pink); color:var(--ink); }
+  .state { font-size:12px; font-weight:800; opacity:0.6; min-width:40px; text-align:right; }
+</style>
+</head>
+<body>
+  <a class="brand" href="/">
+    <svg class="bloom" viewBox="0 0 100 100" aria-hidden="true"><g fill="#f27cc8"><ellipse cx="50" cy="22" rx="16" ry="28"/><ellipse cx="50" cy="22" rx="16" ry="28" transform="rotate(60 50 50)"/><ellipse cx="50" cy="22" rx="16" ry="28" transform="rotate(120 50 50)"/><ellipse cx="50" cy="22" rx="16" ry="28" transform="rotate(180 50 50)"/><ellipse cx="50" cy="22" rx="16" ry="28" transform="rotate(240 50 50)"/><ellipse cx="50" cy="22" rx="16" ry="28" transform="rotate(300 50 50)"/></g></svg>
+    saturated life
+  </a>
+
+  <main id="card" class="card" hidden>
+    <div class="eyebrow">A shared playlist</div>
+    <h1 id="name">…</h1>
+    <p class="by" id="by"></p>
+    <p class="desc" id="desc" hidden></p>
+    <div class="row"><span class="pill pink" id="count"></span><span class="pill">Scripture, sung</span></div>
+    <div class="player">
+      <button class="play" id="play" aria-label="Play"><svg id="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+      <div class="rail" id="rail"><i id="fill"></i></div>
+      <div class="time" id="time">0:00</div>
+    </div>
+    <ol class="tracks" id="tracks"></ol>
+    <audio id="audio" preload="none"></audio>
+    <div class="cta">
+      <a class="main" id="open" href="#">Open in Saturated Life</a>
+      <a class="arrow" id="open2" href="#" aria-label="Open in the app">→</a>
+    </div>
+    <div class="store"><a href="https://apps.apple.com/app/id6499521385">Get the app — free</a></div>
+    <p class="note">Every chapter, read aloud by real voices and sung in twelve styles.</p>
+  </main>
+
+  <div id="missing" class="missing" hidden>
+    <h1 id="missingTitle">This playlist isn't shared any more.</h1>
+    <p class="note">Its owner may have made it private. Ask them to share it again from the app.</p>
+    <div class="store" style="margin-top:20px"><a href="https://apps.apple.com/app/id6499521385">Get Saturated Life</a></div>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><span>READ ✿ LISTEN ✿ SING ✿ REST ✿ READ ✿ LISTEN ✿ SING ✿ REST</span></div>
+
+<script>
+(function () {
+  var KEY = 'AIzaSyAs3FcXweylYk_0Pos28djYK4OOyRWeq5A';
+  var BASE = 'https://firestore.googleapis.com/v1/projects/saturatedlife-e5fec/databases/(default)/documents/';
+  var q = new URLSearchParams(location.search), id = q.get('shareId');
+  var card = document.getElementById('card'), missing = document.getElementById('missing');
+  function fail() { missing.hidden = false; card.hidden = true; }
+  if (!id || !/^[A-Za-z0-9_-]{6,80}$/.test(id)) { document.getElementById('missingTitle').textContent = 'That link is missing its playlist.'; return fail(); }
+  var app = 'saturatedlife://playlist?shareId=' + encodeURIComponent(id);
+  document.getElementById('open').href = app; document.getElementById('open2').href = app;
+
+  function val(v) {
+    if (!v) return null;
+    if ('stringValue' in v) return v.stringValue;
+    if ('integerValue' in v) return parseInt(v.integerValue, 10);
+    if ('booleanValue' in v) return v.booleanValue;
+    if ('arrayValue' in v) return (v.arrayValue.values || []).map(val);
+    if ('mapValue' in v) { var o = {}, f = v.mapValue.fields || {}; for (var k in f) o[k] = val(f[k]); return o; }
+    return null;
+  }
+
+  var songs = [], current = -1, objectURLs = {};
+  var el = document.getElementById('audio'), playBtn = document.getElementById('play'), icon = document.getElementById('icon');
+  var fill = document.getElementById('fill'), time = document.getElementById('time'), rail = document.getElementById('rail'), list = document.getElementById('tracks');
+  function fmt(s) { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+  function setIcon(p) { icon.innerHTML = p ? '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>' : '<path d="M8 5v14l11-7z"/>'; playBtn.setAttribute('aria-label', p ? 'Pause' : 'Play'); }
+  function mark() { Array.prototype.forEach.call(list.querySelectorAll('button'), function (b, i) { b.setAttribute('aria-current', i === current ? 'true' : 'false'); }); }
+  function status(i, text) { var s = list.querySelectorAll('.state')[i]; if (s) s.textContent = text; }
+
+  // The fast audio link expires after about a day; the durable copy is stored
+  // as base64 chunks under the song's community track.
+  function fromChunks(song) {
+    if (objectURLs[song.id]) return Promise.resolve(objectURLs[song.id]);
+    if (!song.trackDocId || !song.chunkCount) return Promise.reject(new Error('no backup'));
+    var jobs = [];
+    for (var i = 0; i < song.chunkCount; i++) {
+      jobs.push(fetch(BASE + 'communityTracks/' + encodeURIComponent(song.trackDocId) + '/audioChunks/' + i + '?key=' + KEY)
+        .then(function (r) { if (!r.ok) throw new Error('chunk'); return r.json(); })
+        .then(function (d) { var b = atob(d.fields.data.bytesValue), a = new Uint8Array(b.length); for (var j = 0; j < b.length; j++) a[j] = b.charCodeAt(j); return a; }));
+    }
+    return Promise.all(jobs).then(function (parts) { var u = URL.createObjectURL(new Blob(parts, { type: 'audio/mp4' })); objectURLs[song.id] = u; return u; });
+  }
+
+  function playIndex(i) {
+    if (i < 0 || i >= songs.length) return;
+    current = i; mark();
+    var song = songs[i], https = false;
+    try { https = song.audioURL && new URL(song.audioURL).protocol === 'https:'; } catch (e) {}
+    function viaChunks() {
+      status(i, '…');
+      fromChunks(song).then(function (u) { status(i, ''); el.src = u; el.play(); })
+        .catch(function () { status(i, 'n/a'); if (i + 1 < songs.length) playIndex(i + 1); });
+    }
+    if (https) { el.onerror = function () { el.onerror = null; viaChunks(); }; el.src = song.audioURL; el.play().catch(function () {}); }
+    else viaChunks();
+  }
+
+  playBtn.addEventListener('click', function () { if (current < 0) return playIndex(0); if (el.paused) el.play(); else el.pause(); });
+  el.addEventListener('play', function () { setIcon(true); });
+  el.addEventListener('pause', function () { setIcon(false); });
+  el.addEventListener('ended', function () { if (current + 1 < songs.length) playIndex(current + 1); else setIcon(false); });
+  el.addEventListener('timeupdate', function () { if (el.duration) { fill.style.width = (el.currentTime / el.duration * 100) + '%'; time.textContent = fmt(el.duration - el.currentTime); } });
+  rail.addEventListener('click', function (ev) { var r = rail.getBoundingClientRect(); if (el.duration) el.currentTime = (ev.clientX - r.left) / r.width * el.duration; });
+
+  fetch(BASE + 'publicPlaylists/' + encodeURIComponent(id) + '?key=' + KEY)
+    .then(function (r) { if (!r.ok) throw new Error('missing'); return r.json(); })
+    .then(function (doc) {
+      var f = doc.fields || {}, p = {}; for (var k in f) p[k] = val(f[k]);
+      songs = (p.songs || []).filter(function (s) { return s && s.scriptureRef; });
+      if (!songs.length) return fail();
+      card.hidden = false;
+      document.title = (p.name || 'Playlist') + ' — Saturated Life';
+      document.getElementById('name').textContent = (p.emoji ? p.emoji + ' ' : '') + (p.name || 'Playlist');
+      document.getElementById('by').textContent = 'Shared by ' + (p.authorName || 'a listener');
+      if (p.description) { var d = document.getElementById('desc'); d.textContent = p.description; d.hidden = false; }
+      document.getElementById('count').textContent = songs.length + (songs.length === 1 ? ' song' : ' songs');
+      songs.forEach(function (s, i) {
+        var li = document.createElement('li'), b = document.createElement('button');
+        b.type = 'button'; b.setAttribute('aria-label', 'Play ' + s.scriptureRef + ', ' + s.genre);
+        [['n', String(i + 1)], ['t', s.scriptureRef], ['g', s.genre], ['state', '']].forEach(function (c) { var e = document.createElement('span'); e.className = c[0]; e.textContent = c[1]; b.appendChild(e); });
+        b.addEventListener('click', function () { if (i === current && !el.paused) el.pause(); else if (i === current) el.play(); else playIndex(i); });
+        li.appendChild(b); list.appendChild(li);
+      });
+    })
+    .catch(fail);
+})();
+</script>
+</body>
+</html>
