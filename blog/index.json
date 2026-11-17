@@ -1,6 +1,12 @@
 {
  "articles": [
   {
+   "slug": "twelve-rooms-twelve-genres",
+   "title": "Twelve rooms and what each one is for",
+   "dek": "Every genre carries the same words somewhere different in you.",
+   "date": "November 17, 2026"
+  },
+  {
    "slug": "waking-to-the-word-p1b5",
    "title": "Waking to the word: what an alarm can do for a morning",
    "dek": "The first sound you hear shapes the first thought you carry, and that is worth taking seriously.",
